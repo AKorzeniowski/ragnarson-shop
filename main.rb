@@ -15,9 +15,17 @@ module Store
 
   class App < Sinatra::Base
     get "/" do
-      products = FetchProducts.new.call
       erb :index
+    end
+
+    get "/products/?" do
+      products = FetchProducts.new.call
+      erb :products, locals: { products: products }
+    end
+
+    get "/products/:id/?" do |id|
+      product = FetchProductById.new.call(id)
+      erb :product, locals: { product: product }
     end
   end
 end
-# ware.to_s
