@@ -1,6 +1,7 @@
 module Store
   class StorageItem
-    attr_reader :product_id, :quantity
+    attr_reader :product_id
+    attr_accessor :quantity
   
     def initialize(product_id, quantity)
       @product_id = validate(product_id, Numeric)

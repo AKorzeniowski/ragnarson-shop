@@ -1,7 +1,7 @@
 module Store
-  class FetchWarehouse
+  class FetchProductFromWarehouse
     def call(id)
-      WAREHOUSE.find { |item| item.id == id.to_i }
+      WAREHOUSE.find { |item| item.product_id == id.to_i }
     end
   end
 end

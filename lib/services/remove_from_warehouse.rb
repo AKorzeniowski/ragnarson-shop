@@ -1,21 +1,21 @@
-require_relative './fetch_warehouse'
+require_relative './fetch_product_from_warehouse'
 
 module Store
   class RemoveFromWarehouse
     def call(id)
-      product = FetchFromWarehouse.new.call(id)
+      item = FetchFromWarehouse.new.call(id)
 
-      return unless product
+      return unless item
 
-      remove_product(product)
+      remove_item(item)
     end
 
     private
-      def remove_product(product)
-        unless product.qty > 1
-          product.qty -= 1
+      def remove_item(item)
+        unless item.quantity > 1
+          item.quantity -= 1
         else
-          WAREHOUSE.delete(product)
+          WAREHOUSE.delete(item)
       end
     end
   end

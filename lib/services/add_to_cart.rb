@@ -6,7 +6,17 @@ module Store
     end
 
     def call
-      CART << StorageItem.new(@product_id, @quantity)
+      item = FetchProductFromCart.new.call(@product_id)
+      add_item(item)
+    end
+
+    private
+      def add_item(item)
+        if item
+          item.quantity += 1
+        else
+          CART.push(StorageItem.new(@product_id, @quantity))
+      end
     end
   end
 end
