@@ -15,7 +15,8 @@ module Store
 
   class App < Sinatra::Base
     get "/" do
-      products = FetchProducts.new.call      
+      products = FetchProducts.new.call
+      erb :index
     end
   end
 end
