@@ -1,6 +1,5 @@
 module Store
   class Cart
-    require Storage
     attr_reader :id, :qty
   
     def initialize(id, qty)
