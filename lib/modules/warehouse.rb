@@ -1,37 +1,20 @@
 module Store
   class Warehouse
-    require Storage 
-
-    attr_reader :id, :name, :products, :content
+    attr_reader :id, :qty
   
     @@last_id = 0
   
-    def initialize(id, name)
+    def initialize(id, qty)
       @id = validate(id, Numeric)
-      @name = validate(name, String)
-      @content = []
+      @qty = validate(qty, Numeric)
     end
   
-  =begin
-    def get_product(id) 
-      product = products.find { |p| p.id == id } 
-      unless product then raise ArgumentError end
-      product
-    end
-  
-    def to_s
-      print "Magazyn #{name}\n"
-      print "id\tname\tprice\tqty\n"
-  
-      content.each do |p|
-        prod = get_product(id)
-        print "#{p[:id]}\t#{prod.name}\t#{prod.price}\t\t#{p[:qty]}\n"
+    def validate(input, type)
+      unless input.nil?
+          if input.is_a? type then return input else raise TypeError end
+      else
+        raise ArgumentError
       end
     end
-  =end
-    private
-      def next_id 
-        @@last_id += 1
-      end
   end
 end
