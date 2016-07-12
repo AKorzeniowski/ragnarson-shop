@@ -1,5 +1,5 @@
 module Store
-  class Cart
+  class StorageItem
     attr_reader :product_id, :quantity
   
     def initialize(product_id, quantity)

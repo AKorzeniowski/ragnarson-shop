@@ -6,7 +6,7 @@ module Store
     end
 
     def call
-      CART << Cart.new(@product_id, @quantity)
+      CART << StorageItem.new(@product_id, @quantity)
     end
   end
 end

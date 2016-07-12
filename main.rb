@@ -33,7 +33,7 @@ module Store
       erb :cart, locals: { cart: cart }
     end
 
-    post "/cart/?" do
+    post "/cart/add/?" do
       AddToCart.new(params).call
       p CART
       redirect "/cart"
