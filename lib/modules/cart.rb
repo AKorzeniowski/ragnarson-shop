@@ -1,24 +1,24 @@
 module Store
   class Cart
-    attr_reader :id, :qty
+    attr_reader :product_id, :quantity
   
-    def initialize(id, qty)
-      @id = validate(id, Numeric)
-      @qty = validate(id, Numeric)
+    def initialize(product_id, quantity)
+      @product_id = validate(product_id, Numeric)
+      @quantity = validate(quantity, Numeric)
     end
 
     def fetch_product 
-      FetchProduct.new.call(id)
+      FetchProductById.new.call(product_id)
     end
 
     def net_product_price
       product = fetch_product
-      product.price * qty
+      product.price * quantity
     end
 
     def gross_product_price
       product = fetch_product
-      product.price_with_vat * qty
+      product.price_with_vat * quantity
     end
 
     def validate(input, type)

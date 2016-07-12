@@ -11,7 +11,7 @@ module Store
   ]
 
   WAREHOUSE = []
-  BASKET = []
+  CART = []
 
   class App < Sinatra::Base
     get "/" do
@@ -26,6 +26,17 @@ module Store
     get "/products/:id/?" do |id|
       product = FetchProductById.new.call(id)
       erb :product, locals: { product: product }
+    end
+
+    get "/cart/?" do
+      cart = FetchCart.new.call
+      erb :cart, locals: { cart: cart }
+    end
+
+    post "/cart/?" do
+      AddToCart.new(params).call
+      p CART
+      redirect "/cart"
     end
   end
 end
