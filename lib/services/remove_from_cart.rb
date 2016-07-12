@@ -1,13 +1,13 @@
 require_relative './fetch_product_from_storage'
 
 module Store
-  class RemoveFromWarehouse
+  class RemoveFromCart
     def initialize(params)
       @product_id = params.fetch("product_id").to_i
     end
 
     def call
-      item = FetchProductFromStorage.new.call(@product_id, WAREHOUSE)
+      item = FetchProductFromStorage.new.call(@product_id, CART)
 
       return unless item
 
@@ -19,7 +19,7 @@ module Store
         if item.quantity > 1
           item.quantity -= 1
         else
-          WAREHOUSE.delete(item)
+          CART.delete(item)
       end
     end
   end

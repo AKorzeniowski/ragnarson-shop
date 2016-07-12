@@ -35,8 +35,27 @@ module Store
 
     post "/cart/add/?" do
       AddToCart.new(params).call
-      p CART
       redirect "/cart"
+    end
+
+    post "/cart/remove/?" do
+      RemoveFromCart.new(params).call
+      redirect "/cart"
+    end
+
+    get "/warehouse/?" do
+      warehouse = FetchWarehouse.new.call
+      erb :warehouse, locals: { warehouse: warehouse }
+    end
+
+    post "/warehouse/add/?" do
+      AddToWarehouse.new(params).call
+      redirect "/warehouse"
+    end
+
+    post "/warehouse/remove/?" do
+      RemoveFromWarehouse.new(params).call
+      redirect "/warehouse"
     end
   end
 end

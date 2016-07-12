@@ -1,9 +1,12 @@
-require_relative './fetch_product_from_warehouse'
-
-module Store
+module Store 
   class AddToWarehouse
-    def call(product_id, quantity)
-      item = FetchFromWarehouse.new.call(product_id)
+    def initialize(params)
+      @product_id = params.fetch("product_id").to_i
+      @quantity = params.fetch("quantity").to_i
+    end
+
+    def call
+      item = FetchProductFromStorage.new.call(@product_id, WAREHOUSE)
       add_item(item)
     end
 
@@ -12,7 +15,7 @@ module Store
         if item
           item.quantity += 1
         else
-          WAREHOUSE.push(StorageItem.new(product_id, quantity))
+          WAREHOUSE.push(StorageItem.new(@product_id, @quantity))
       end
     end
   end

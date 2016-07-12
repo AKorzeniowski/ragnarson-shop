@@ -6,7 +6,7 @@ module Store
     end
 
     def call
-      item = FetchProductFromCart.new.call(@product_id)
+      item = FetchProductFromStorage.new.call(@product_id, CART)
       add_item(item)
     end
 
