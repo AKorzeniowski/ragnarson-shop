@@ -3,7 +3,7 @@ require_relative './fetch_product_from_storage'
 module Store
   class RemoveFromCart
     def initialize(params)
-      @product_id = params.fetch("product_id").to_i
+      @product_id = params.fetch('product_id').to_i
     end
 
     def call
@@ -15,11 +15,12 @@ module Store
     end
 
     private
-      def remove_item(item)
-        if item.quantity > 1
-          item.quantity -= 1
-        else
-          CART.delete(item)
+
+    def remove_item(item)
+      if item.quantity > 1
+        item.quantity -= 1
+      else
+        CART.delete(item)
       end
     end
   end

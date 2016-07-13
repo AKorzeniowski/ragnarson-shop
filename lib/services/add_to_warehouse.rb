@@ -1,8 +1,8 @@
-module Store 
+module Store
   class AddToWarehouse
     def initialize(params)
-      @product_id = params.fetch("product_id").to_i
-      @quantity = params.fetch("quantity").to_i
+      @product_id = params.fetch('product_id').to_i
+      @quantity = params.fetch('quantity').to_i
     end
 
     def call
@@ -11,11 +11,12 @@ module Store
     end
 
     private
-      def add_item(item)
-        if item
-          item.quantity += 1
-        else
-          WAREHOUSE.push(StorageItem.new(@product_id, @quantity))
+
+    def add_item(item)
+      if item
+        item.quantity += 1
+      else
+        WAREHOUSE.push(StorageItem.new(@product_id, @quantity))
       end
     end
   end

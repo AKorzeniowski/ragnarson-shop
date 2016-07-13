@@ -1,7 +1,7 @@
 module Store
-	class FetchProducts
+  class FetchProducts
     def call 
       PRODUCTS
     end
-	end
+  end
 end

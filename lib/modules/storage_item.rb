@@ -2,13 +2,13 @@ module Store
   class StorageItem
     attr_reader :product_id
     attr_accessor :quantity
-  
+
     def initialize(product_id, quantity)
       @product_id = validate(product_id, Numeric)
       @quantity = validate(quantity, Numeric)
     end
 
-    def fetch_product 
+    def fetch_product
       FetchProductById.new.call(product_id)
     end
 
@@ -24,7 +24,7 @@ module Store
 
     def validate(input, type)
       unless input.nil?
-          if input.is_a? type then return input else raise TypeError end
+        if input.is_a? type then return input else raise TypeError end
       else
         raise ArgumentError
       end
