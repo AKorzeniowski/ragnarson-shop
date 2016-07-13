@@ -9,9 +9,7 @@ module Store
     def call
       item = FetchProductFromStorage.new.call(@product_id, CART)
 
-      return unless item
-
-      remove_item(item)
+      remove_item(item) unless item
     end
 
     private

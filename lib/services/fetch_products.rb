@@ -1,6 +1,6 @@
 module Store
   class FetchProducts
-    def call 
+    def call
       PRODUCTS
     end
   end

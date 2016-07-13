@@ -23,10 +23,10 @@ module Store
     end
 
     def validate(input, type)
-      unless input.nil?
-        if input.is_a? type then return input else raise TypeError end
-      else
+      if input.nil?
         raise ArgumentError
+      else
+        input.is_a?(type) ? (return input) : (raise TypeError)
       end
     end
   end

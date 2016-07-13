@@ -3,7 +3,7 @@ module Store
     attr_reader :id, :name, :price, :vat
 
     @@last_id = 0
-    
+
     def initialize(name, price, vat = 23)
       @id = next_id
       @name = validate(name, String)
@@ -16,10 +16,10 @@ module Store
     end
 
     def validate(input, type)
-      unless input.nil?
-        if input.is_a? type then return input else raise TypeError end
-      else
+      if input.nil?
         raise ArgumentError
+      else
+        input.is_a?(type) ? (return input) : (raise TypeError)
       end
     end
 
