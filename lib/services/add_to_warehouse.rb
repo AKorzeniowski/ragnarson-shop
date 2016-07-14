@@ -1,8 +1,8 @@
 module Store
   class AddToWarehouse
     def initialize(params)
-      @product_id = params.fetch('product_id').to_i
-      @quantity = params.fetch('quantity').to_i
+      @product_id = params.fetch("product_id").to_i
+      @quantity = params.fetch("quantity").to_i
     end
 
     def call

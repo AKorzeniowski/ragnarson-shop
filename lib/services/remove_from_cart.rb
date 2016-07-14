@@ -1,9 +1,9 @@
-require_relative './fetch_product_from_storage'
+require_relative "./fetch_product_from_storage"
 
 module Store
   class RemoveFromCart
     def initialize(params)
-      @product_id = params.fetch('product_id').to_i
+      @product_id = params.fetch("product_id").to_i
     end
 
     def call
@@ -11,7 +11,7 @@ module Store
 
       return unless item
 
-      remove_item(item) 
+      remove_item(item)
     end
 
     private
