@@ -9,7 +9,7 @@ module Store
     def call
       item = FetchProductFromStorage.new.call(@product_id, WAREHOUSE)
 
-      return unless item
+      raise ProductNotFoundError unless item
 
       remove_item(item)
     end

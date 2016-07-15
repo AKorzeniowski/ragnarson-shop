@@ -3,7 +3,7 @@ module Store
     attr_reader :product_id
     attr_accessor :quantity
 
-    def initialize(product_id, quantity)
+    def initialize(product_id, quantity = 1)
       @product_id = validate(product_id, Numeric)
       @quantity = validate(quantity, Numeric)
     end

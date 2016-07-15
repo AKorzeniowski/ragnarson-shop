@@ -3,12 +3,12 @@
 <p>Item with ID <%= product.id %> is a <%= product.name %> and costs <%= product.price %> (or <%= product.price_with_vat %> with a VAT level of <%= product.vat %>).</p>
 <form action="/cart/add" method="post">
 	<input type="hidden" name="product_id" value=<%= product.id %>>
-	<input type="number" name="quantity" value=1>
+	<input type="number" name="quantity" min=1 value=1>
 	<input type="submit" value="Add to basket">
 </form>
 
 <form action="/warehouse/add" method="post">
 	<input type="hidden" name="product_id" value=<%= product.id %>>
-	<input type="number" name="quantity" value=1>
+	<input type="number" name="quantity" min=1 value=1>
 	<input type="submit" value="Add to warehouse">
 </form>

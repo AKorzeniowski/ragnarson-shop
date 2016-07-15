@@ -44,7 +44,6 @@ module Store
 
     post "/cart/add/?" do
       begin
-        CheckIfProductInStorage.new(params).call(WAREHOUSE)
         RemoveFromWarehouse.new(params).call
         AddToCart.new(params).call
         redirect "/cart"
