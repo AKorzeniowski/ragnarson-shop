@@ -24,13 +24,13 @@ module Store
 
     get "/products/?" do
       products = FetchProducts.new.call
-      erb :products, locals: { products: products }
+      erb :"products/list", locals: { products: products }
     end
 
     get "/products/:id/?" do |id|
       begin
         product = FetchProductById.new.call(id)
-        erb :product, locals: { product: product }
+        erb :"products/show", locals: { product: product }
       rescue ProductNotFoundError
         status 404
         erb :error, locals: { error: "Nie znaleziono produktu :(" }

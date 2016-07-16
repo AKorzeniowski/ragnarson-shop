@@ -9,17 +9,23 @@ RSpec.describe Store::AddToWarehouse do
   describe "#new" do
     context "with invalid params" do
       it "raises error for invalid product_id" do
-        expect{ add.new({ "product_id" => "foo", "quantity" => "1" }) }.to raise_error TypeError
+        expect {
+          add.new({ "product_id" => "foo", "quantity" => "1" })
+        }.to raise_error TypeError
       end
 
       it "raises error for invalid quantity" do
-        expect{ add.new({ "product_id" => "1", "quantity" => "-42" }) }.to raise_error TypeError
+        expect {
+          add.new({ "product_id" => "1", "quantity" => "-42" })
+        }.to raise_error TypeError
       end
     end
 
     context "with valid params" do
       it "doesn't raise an error for valid params" do
-        expect{ add.new({ "product_id" => "1", "quantity" => "1" }) }.to_not raise_error
+        expect {
+          add.new({ "product_id" => "1", "quantity" => "1" })
+        }.to_not raise_error
       end
     end
   end
@@ -36,19 +42,25 @@ RSpec.describe Store::AddToWarehouse do
     end
 
     it "accepts correct params" do
-      expect{add.new("product_id" => product.id, "quantity" => 1).call}.to_not raise_error
+      expect{
+        add.new("product_id" => product.id, "quantity" => 1).call
+      }.to_not raise_error
     end
 
     context "product not in warehouse" do
-      it "addsa  product to warehouse" do
-        expect{add.new("product_id" => product.id, "quantity" => 1).call}.to change{WAREHOUSE.size}.by(1)
+      it "adds a product to warehouse" do
+        expect{
+          add.new("product_id" => product.id, "quantity" => 1).call
+        }.to change { WAREHOUSE.size }.by(1)
       end
     end
 
     context "product already in warehouse" do
       it "increments quantity of product" do
         add.new("product_id" => product.id, "quantity" => 1).call
-        expect{add.new("product_id" => product.id, "quantity" => 1).call}.to change{Store::FetchProductFromStorage.new.call(product.id, WAREHOUSE).quantity}.by(1)
+        expect{
+          add.new("product_id" => product.id, "quantity" => 1).call
+        }.to change { Store::FetchProductFromStorage.new.call(product.id, WAREHOUSE).quantity }.by(1)
       end
     end
   end

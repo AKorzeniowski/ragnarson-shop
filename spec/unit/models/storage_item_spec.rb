@@ -19,7 +19,7 @@ RSpec.describe Store::StorageItem do
       end
 
       it "cannot accept no parameters" do
-        expect { Store::StorageItem.new() }.to raise_error ArgumentError
+        expect { Store::StorageItem.new }.to raise_error ArgumentError
       end
     end
 
@@ -53,9 +53,9 @@ RSpec.describe Store::StorageItem do
 
     context "for methods" do
       before(:all) do
-      PRODUCTS = [ 
-        Store::Product.new("foo", 1) 
-      ]
+        PRODUCTS = [ 
+          Store::Product.new("foo", 1)
+        ]
       end
 
       let(:storage_item) { Store::StorageItem.new(1, 1) }
@@ -64,21 +64,21 @@ RSpec.describe Store::StorageItem do
         it "returns a product" do
           expect(storage_item.fetch_product).to be_a Store::Product
         end
-  
+
         it "returns a product with a requested id" do
           expect(storage_item.fetch_product.id).to eql(1)
         end
       end
-  
-      context "for net_product_price" do  
+
+      context "for net_product_price" do
         it "returns the correct price of product" do
           expect(storage_item.net_product_price).to eql(1)
         end
       end
-  
+
       context "for gross_product_price" do
         it "returns the correct price with vat of product" do
-           expect(storage_item.gross_product_price).to eql(1.23)         
+          expect(storage_item.gross_product_price).to eql(1.23)
         end
       end
     end
