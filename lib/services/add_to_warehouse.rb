@@ -1,6 +1,7 @@
 module Store
   class AddToWarehouse
     def initialize(params)
+      p params.fetch("product_id").to_i
       @product_id = validate(params.fetch("product_id").to_i)
       @quantity = validate(params.fetch("quantity").to_i)
     end

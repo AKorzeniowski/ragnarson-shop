@@ -4,8 +4,8 @@ module Store
     attr_accessor :quantity
 
     def initialize(product_id, quantity = 1)
-      @product_id = validate(product_id, Numeric)
-      @quantity = validate(quantity, Numeric)
+      @product_id = validate(product_id)
+      @quantity = validate(quantity)
     end
 
     def fetch_product
@@ -22,11 +22,11 @@ module Store
       product.price_with_vat * quantity
     end
 
-    def validate(input, type)
+    def validate(input)
       if input.nil?
         raise ArgumentError
       else
-        input.is_a?(type) ? (return input) : (raise TypeError)
+        (input.is_a?(Numeric) && input > 0) ? (return input) : (raise TypeError)
       end
     end
   end
