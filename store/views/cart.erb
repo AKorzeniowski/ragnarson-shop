@@ -1,0 +1,38 @@
+<h1>My cart</h1>
+<% unless cart.empty? %>
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cart.each do |item| %>
+      <tr>
+        <td><%= item[:product].name %></td>
+        <td><%= item[:product].price %></td>
+        <td><%= item[:quantity] %></td>
+        <td><%= item[:total_price] %></td>
+        <td>
+          <form action="cart/add" method="post"> <input type="hidden" name="product_id" value=<%= item[:product].id %>><input type="hidden" name="quantity" value=1><input type="submit" value="Add"></form>
+          <form action="cart/remove" method="post"> <input type="hidden" name="product_id" value=<%= item[:product].id %>><input type="hidden" name="quantity" value=1><input type="submit" value="Remove"></form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Summary:</td>
+      <td><%= cart.map{|x| x[:total_price]}.reduce(:+)%></td>
+  </tfoot>
+</table>
+<% else %>
+<p>...is empty. 😕</p>
+<% end %>
